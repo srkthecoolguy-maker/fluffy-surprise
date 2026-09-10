@@ -1,101 +1,339 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>For My Fluffy ❤️</title>
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden}
-body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#05050d;color:#fff}
-.bg{position:fixed;inset:0;background:radial-gradient(circle at 50% 35%,#30214d 0,#0b0a18 48%,#020207 100%);z-index:-3}
-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block}
-.screen{position:absolute;inset:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;overflow:hidden}
-.screen.on{display:flex;animation:in .8s ease}
-.card{width:min(680px,94vw);max-width:100%;max-height:94vh;overflow-y:auto;overflow-x:hidden;padding:30px 24px;border-radius:30px;background:#ffffff0b;border:1px solid #ffffff22;backdrop-filter:blur(15px);box-shadow:0 25px 100px #0009}
-h1{font-size:clamp(38px,10vw,76px);margin:5px 0 10px;letter-spacing:-2px}
-h2{font-size:clamp(27px,7vw,43px);margin:5px 0 15px}
-p{font-size:18px;line-height:1.7;color:#eee;margin:12px 0}.muted{font-size:14px;color:#aaa}
-button{background:#fff;color:#15111e;border:0;border-radius:999px;padding:14px 26px;font-weight:750;font-size:16px;margin-top:20px;cursor:pointer}
-.heart{font-size:72px;animation:pulse 1.5s infinite}
-@keyframes pulse{50%{transform:scale(1.18)}}
-@keyframes in{from{opacity:0;transform:scale(.96) translateY(15px)}to{opacity:1;transform:none}}
-.type{min-height:205px;text-align:left;white-space:pre-wrap}
-.cheeks{font-size:110px;animation:bob 2s infinite}
-@keyframes bob{50%{transform:translateY(-9px)}}
-.route{height:4px;background:#ffffff20;border-radius:9px;margin:35px 25px;position:relative}
-.dot{position:absolute;top:-9px;width:22px;height:22px;border-radius:50%;background:#ff77ad;box-shadow:0 0 24px #ff77ad;animation:travel 3s forwards}
-@keyframes travel{from{left:0}to{left:calc(100% - 22px)}}
-.photos{display:flex;gap:14px;justify-content:center;align-items:center;margin:20px 0;flex-wrap:wrap}
-.photos img{width:145px;height:165px;object-fit:cover;border-radius:20px;border:2px solid #ffffff25;box-shadow:0 12px 35px #0008}
-.final{font-size:22px!important}.float{position:fixed;z-index:10;pointer-events:none;animation:rise 5s linear forwards}
-@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
-.ring{font-size:78px;margin:12px 0;animation:glow 2s infinite alternate}
-@keyframes glow{to{filter:drop-shadow(0 0 25px #ff6fae)}}
-@media(max-width:480px){.card{padding:25px 18px}.photos img{width:125px;height:145px}}
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>For My Fluffy ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+            background: #05050d;
+            color: #fff
+        }
+
+        .bg {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 35%, #30214d 0, #0b0a18 48%, #020207 100%);
+            z-index: -3
+        }
+
+        canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            display: block
+        }
+
+        .screen {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            overflow: hidden
+        }
+
+        .screen.on {
+            display: flex;
+            animation: in .8s ease
+        }
+
+        .card {
+            width: min(680px, 94vw);
+            max-width: 100%;
+            max-height: 94vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 30px 24px;
+            border-radius: 30px;
+            background: #ffffff0b;
+            border: 1px solid #ffffff22;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 100px #0009
+        }
+
+        h1 {
+            font-size: clamp(38px, 10vw, 76px);
+            margin: 5px 0 10px;
+            letter-spacing: -2px
+        }
+
+        h2 {
+            font-size: clamp(27px, 7vw, 43px);
+            margin: 5px 0 15px
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #eee;
+            margin: 12px 0
+        }
+
+        .muted {
+            font-size: 14px;
+            color: #aaa
+        }
+
+        button {
+            background: #fff;
+            color: #15111e;
+            border: 0;
+            border-radius: 999px;
+            padding: 14px 26px;
+            font-weight: 750;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer
+        }
+
+        .heart {
+            font-size: 72px;
+            animation: pulse 1.5s infinite
+        }
+
+        @keyframes pulse {
+            50% {
+                transform: scale(1.18)
+            }
+        }
+
+        @keyframes in {
+            from {
+                opacity: 0;
+                transform: scale(.96) translateY(15px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .type {
+            min-height: 205px;
+            text-align: left;
+            white-space: pre-wrap
+        }
+
+        .cheeks {
+            font-size: 110px;
+            animation: bob 2s infinite
+        }
+
+        @keyframes bob {
+            50% {
+                transform: translateY(-9px)
+            }
+        }
+
+        .route {
+            height: 4px;
+            background: #ffffff20;
+            border-radius: 9px;
+            margin: 35px 25px;
+            position: relative
+        }
+
+        .dot {
+            position: absolute;
+            top: -9px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #ff77ad;
+            box-shadow: 0 0 24px #ff77ad;
+            animation: travel 3s forwards
+        }
+
+        @keyframes travel {
+            from {
+                left: 0
+            }
+
+            to {
+                left: calc(100% - 22px)
+            }
+        }
+
+        .photos {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap
+        }
+
+        .photos img {
+            width: 145px;
+            height: 165px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid #ffffff25;
+            box-shadow: 0 12px 35px #0008
+        }
+
+        .final {
+            font-size: 22px !important
+        }
+
+        .float {
+            position: fixed;
+            z-index: 10;
+            pointer-events: none;
+            animation: rise 5s linear forwards
+        }
+
+        @keyframes rise {
+            to {
+                transform: translateY(-110vh) rotate(25deg);
+                opacity: 0
+            }
+        }
+
+        .ring {
+            font-size: 78px;
+            margin: 12px 0;
+            animation: glow 2s infinite alternate
+        }
+
+        @keyframes glow {
+            to {
+                filter: drop-shadow(0 0 25px #ff6fae)
+            }
+        }
+
+        @media(max-width:480px) {
+            .card {
+                padding: 25px 18px
+            }
+
+            .photos img {
+                width: 125px;
+                height: 145px
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="bg"></div><canvas id="c"></canvas>
+    <div class="bg"></div><canvas id="c"></canvas>
 
-<section class="screen on" id="s0"><div class="card">
-<div class="heart">❤️</div><h1>Hey, Fluffy...</h1>
-<p>I made something for you.</p><p class="muted">Please go all the way to the end. 😌</p>
-<button onclick="go(1)">Start ✨</button></div></section>
+    <section class="screen on" id="s0">
+        <div class="card">
+            <div class="heart">❤️</div>
+            <h1>Hey, Fluffy...</h1>
+            <p>I made something for you.</p>
+            <p class="muted">Please go all the way to the end. 😌</p>
+            <button onclick="go(1)">Start ✨</button>
+        </div>
+    </section>
 
-<section class="screen" id="s1"><div class="card">
-<h2>From thousands of kilometres away...</h2><p>there's still someone thinking about you.</p>
-<div class="route"><span class="dot"></span></div>
-<p>🇮🇳 India &nbsp; ❤️ &nbsp; 🇵🇭 Philippines</p>
-<button onclick="go(2)">Keep going</button></div></section>
+    <section class="screen" id="s1">
+        <div class="card">
+            <h2>From thousands of kilometres away...</h2>
+            <p>there's still someone thinking about you.</p>
+            <div class="route"><span class="dot"></span></div>
+            <p>🇮🇳 India &nbsp; ❤️ &nbsp; 🇵🇭 Philippines</p>
+            <button onclick="go(2)">Keep going</button>
+        </div>
+    </section>
 
-<section class="screen" id="s2"><div class="card">
-<h2>There are many things I love about you.</h2>
-<div class="type" id="type"></div>
-<button onclick="go(3)">There's more ❤️</button></div></section>
+    <section class="screen" id="s2">
+        <div class="card">
+            <h2>There are many things I love about you.</h2>
+            <div class="type" id="type"></div>
+            <button onclick="go(3)">There's more ❤️</button>
+        </div>
+    </section>
 
-<section class="screen" id="s3"><div class="card">
-<div class="cheeks">😊</div><h2>And yes... your fluffy cheeks. 😂</h2>
-<p>I know I tease you about them all the time...</p><p>But honestly, I really like them.</p>
-<p><b>I can't wait to pinch them and annoy you in person.</b> ❤️</p>
-<button onclick="go(4)">One more thing...</button></div></section>
+    <section class="screen" id="s3">
+        <div class="card">
+            <div class="cheeks">😊</div>
+            <h2>And yes... your fluffy cheeks. 😂</h2>
+            <p>I know I tease you about them all the time...</p>
+            <p>But honestly, I really like them.</p>
+            <p><b>I can't wait to pinch them and annoy you in person.</b> ❤️</p>
+            <button onclick="go(4)">One more thing...</button>
+        </div>
+    </section>
 
-<section class="screen" id="s4"><div class="card">
-<h2>My favourite teacher 👩‍🏫❤️</h2>
-<p>You're really special to me.</p>
-<p>One of the things I admire most is how caring you are, especially towards your family.</p>
-<p>That caring heart is one of the reasons I love you even more.</p>
-<div class="photos"><img src="photo1.jpg" alt="A memory"><img src="photo2.png" alt="A memory"></div>
-<button onclick="go(5)">My final message ❤️</button></div></section>
+    <section class="screen" id="s4">
+        <div class="card">
+            <h2>Okay… Let Me Be Honest 😌</h2>
 
-<section class="screen" id="s5"><div class="card">
-<div class="ring">💖</div><h2>Fluffy...</h2>
-<p class="final">No matter how many kilometres are between us, you're still my girl.</p>
-<p>I'm always here for you — loving you, missing you, and looking forward to the day I can finally hold you for real.</p>
-<p class="final"><b>One day, this distance will just be a memory.</b></p>
-<p class="final"><b>Until then, I'll keep choosing you. ❤️</b></p>
-<button onclick="finalReveal()">Mahal kita, Fluffy ❤️</button>
-<div id="ending" style="display:none;animation:in .8s ease"><p class="final"><b>I love you. ❤️</b></p>
-<p class="muted">Made with love, from India to the Philippines.</p></div>
-</div></section>
+            <p>I love your smile.</p>
 
-<script>
-const msg=`You're really special to me.
+            <p>I love your little attitude. 😌</p>
 
-I'm planning so many things for us, and you're not only my girlfriend... you're also my favourite teacher. ❤️
+            <p>I love the way you care about the people you love.</p>
+
+            <p>I love your fluffy cheeks. ❤️</p>
+
+            <p>Basically… I just really, really like you.</p>
+
+            <p><strong>Unfortunately for you, you're stuck with me now. 😂❤️</strong></p>
+            <div class="photos"><img src="photo1.jpg" alt="A memory"><img src="photo2.png" alt="A memory"></div>
+            <button onclick="go(5)">My final message ❤️</button>
+        </div>
+    </section>
+
+    <section class="screen" id="s5">
+        <div class="card">
+            <div class="ring">💖</div>
+            <h2>Fluffy...</h2>
+            <p class="final">No matter how many kilometres are between us, you're still my girl.</p>
+            <p>I'm always here for you — loving you, missing you, and looking forward to the day I can finally hold you
+                for real.</p>
+            <p class="final"><b>One day, this distance will just be a memory.</b></p>
+            <p class="final"><b>Until then, I'll keep choosing you. ❤️</b></p>
+            <button onclick="finalReveal()">Mahal kita, Fluffy ❤️</button>
+            <div id="ending" style="display:none;animation:in .8s ease">
+                <p class="final"><b>I love you. ❤️</b></p>
+                <p class="muted">Made with love, from India to the Philippines.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const msg = `You're really special to me.
+
+I'm planning so many things for us, and you're not only my girlfriend... my wiffey too. ❤️
 
 I really admire how caring you are, especially towards your family.
 
 I really love that side of you.`;
-let pos=0;
-function type(){if(pos<msg.length){document.getElementById('type').textContent=msg.slice(0,++pos);setTimeout(type,msg[pos-1]=='.'?180:34)}}
-function go(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById('s'+n).classList.add('on');if(n===2&&pos===0)type();if(n===5)hearts(20)}
-function finalReveal(){document.getElementById('ending').style.display='block';hearts(45)}
-function hearts(count){for(let i=0;i<count;i++){let e=document.createElement('div');e.className='float';e.textContent=['❤️','💕','✨','💖','💗'][i%5];e.style.left=Math.random()*100+'vw';e.style.top=(80+Math.random()*25)+'vh';e.style.fontSize=(16+Math.random()*30)+'px';e.style.animationDelay=(Math.random()*1.8)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
-const cv=document.getElementById('c'),x=cv.getContext('2d');let w,h,stars=[];
-function resize(){w=cv.width=innerWidth*devicePixelRatio;h=cv.height=innerHeight*devicePixelRatio;stars=Array.from({length:110},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+0.3,a:Math.random()*7}))}
-function draw(){x.clearRect(0,0,w,h);for(const s of stars){s.a+=.008;x.globalAlpha=.2+.35*(Math.sin(s.a)+1)/2;x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fillStyle='#fff';x.fill()}requestAnimationFrame(draw)}
-addEventListener('resize',resize);resize();draw();
-</script>
+        let pos = 0;
+        function type() { if (pos < msg.length) { document.getElementById('type').textContent = msg.slice(0, ++pos); setTimeout(type, msg[pos - 1] == '.' ? 180 : 34) } }
+        function go(n) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('on')); document.getElementById('s' + n).classList.add('on'); if (n === 2 && pos === 0) type(); if (n === 5) hearts(20) }
+        function finalReveal() { document.getElementById('ending').style.display = 'block'; hearts(45) }
+        function hearts(count) { for (let i = 0; i < count; i++) { let e = document.createElement('div'); e.className = 'float'; e.textContent = ['❤️', '💕', '✨', '💖', '💗'][i % 5]; e.style.left = Math.random() * 100 + 'vw'; e.style.top = (80 + Math.random() * 25) + 'vh'; e.style.fontSize = (16 + Math.random() * 30) + 'px'; e.style.animationDelay = (Math.random() * 1.8) + 's'; document.body.appendChild(e); setTimeout(() => e.remove(), 6500) } }
+        const cv = document.getElementById('c'), x = cv.getContext('2d'); let w, h, stars = [];
+        function resize() { w = cv.width = innerWidth * devicePixelRatio; h = cv.height = innerHeight * devicePixelRatio; stars = Array.from({ length: 110 }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2 + 0.3, a: Math.random() * 7 })) }
+        function draw() { x.clearRect(0, 0, w, h); for (const s of stars) { s.a += .008; x.globalAlpha = .2 + .35 * (Math.sin(s.a) + 1) / 2; x.beginPath(); x.arc(s.x, s.y, s.r, 0, 7); x.fillStyle = '#fff'; x.fill() } requestAnimationFrame(draw) }
+        addEventListener('resize', resize); resize(); draw();
+    </script>
 </body>
+
 </html>
